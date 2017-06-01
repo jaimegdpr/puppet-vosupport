@@ -1,39 +1,39 @@
 class vosupport(
   $supported_vos = hiera("vosupport_supported_vos",[]), #list of supported VOs we want to enable
-  $enable_poolaccounts = hiera("vosupport_enable_poolaccounts",True), #whether to create pool accounts
+  $enable_poolaccounts = hiera("vosupport_enable_poolaccounts",true), #whether to create pool accounts
   $enable_mkgridmap_for_service = hiera("vosupport_enable_mkgridmap_for_service",undef), #a service to enable mkgridmap for (LFC...)
   $enable_mappings_for_service = hiera("vosupport_enable_mappings_for_service",undef), #a service to enable mappings for (WMS, ARGUS...)
-  $enable_environment = hiera("vosupport_enable_environment",True), #whether to set up the gridenv for these VOs
-  $enable_voms = hiera("vosupport_enable_voms",True), #whether to enable VOMS client for these VOs
+  $enable_environment = hiera("vosupport_enable_environment",false), #whether to set up the gridenv for these VOs
+  $enable_voms = hiera("vosupport_enable_voms",true), #whether to enable VOMS client for these VOs
   $enable_gridmapdir_for_group = hiera("vosupport_enable_gridmapdir_for_group",undef), #if specified, create and populate gridmapdir with pool accounts and sets the ownership of the gridmapdir to the specified group name
   $enable_sudoers = hiera("vosupport_enable_sudoers",false), # if specified, create and populate /etc/
   $enable_sandboxdir = hiera("vosupport_enable_sandboxdir",false), # if specified, create and populate /etc/
 )  
 {
 
-  include concat::setup
+#  include concat::setup
 
-  file {"grid-env-funcs.sh":
+  file {'grid-env-funcs.sh':
     path => '/usr/libexec/grid-env-funcs.sh',
     source => 'puppet:///modules/vosupport/grid-env-funcs.sh',
-    owner => "root",
-    group => "root",
-    mode => 0644,
+    owner => 'root',
+    group => 'root',
+    mode => '0644',
   }
-  file {"clean-grid-env-funcs.sh":
+  file {'clean-grid-env-funcs.sh':
     path => '/usr/libexec/clean-grid-env-funcs.sh',
     source => 'puppet:///modules/vosupport/clean-grid-env-funcs.sh',
-    owner => "root",
-    group => "root",
-    mode => 0644,
+    owner => 'root',
+    group => 'root',
+    mode => '0644',
   }
   
   #create gridmapdir if necessary
   if $enable_gridmapdir_for_group != undef {
     file {'/etc/grid-security/gridmapdir':
       ensure => directory,
-      mode => 0770,
-      owner => root,
+      mode => '0770',
+      owner => 'root',
       group => $enable_gridmapdir_for_group,
       require => File['/etc/grid-security']
     }
@@ -68,4 +68,5 @@ class vosupport(
     enable_sandboxdir => $enable_sandboxdir
   }
   create_resources("vosupport::enable_vo", $supported_vos_hash, $supported_vos_params)
+#  create_resources("vosupport::enable_vo", $supported_vos_hash, $supported_vos_params, $supported_vos)
 }
