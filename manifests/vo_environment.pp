@@ -8,7 +8,7 @@ class vosupport::vo_environment()
     owner =>  'root',
     group =>  'root',
     mode  =>  '0755',
-    warn => "# $gridenvfile is managed by Puppet env.pp.\n#Any changes in here will be overwritten",         
+#    warn => "# $gridenvfile is managed by Puppet env.pp.\n#Any changes in here will be overwritten",         
   }
   
   concat::fragment{'grid-vo-env header': 
@@ -30,7 +30,7 @@ class vosupport::vo_environment()
     ensure => present,
     owner => "root",
     group => "root",
-    mode => 0755,
+    mode => '0755',
     content => template("vosupport/grid-vo-env.csh.erb"),
   }
 

@@ -9,7 +9,7 @@ define vosupport::cie_vo_poolaccounts (
 {
 #   include grid_pool_accounts{ $voname: }
     grid_pool_accounts{$voname: 
-       users_conf => '/puppet_prod/files/grid//users.conf',
+       users_conf => '/puppet_prod/files/grid/users.conf',
     }
 
 #   grid_pool_accounts { $voname }
