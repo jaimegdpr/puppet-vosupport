@@ -37,8 +37,8 @@ define vosupport::enable_vo (
 
     }
     
-#    if ($enable_environment) {
-    unless ($enable_environment) {
+    if $enable_environment {
+#    unless ($enable_environment) {
       include vosupport::vo_environment
       Vosupport::Voenv  <| voname == $voname |>
     }

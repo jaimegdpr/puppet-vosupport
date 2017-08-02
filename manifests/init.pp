@@ -3,7 +3,7 @@ class vosupport(
   $enable_poolaccounts = hiera("vosupport_enable_poolaccounts",true), #whether to create pool accounts
   $enable_mkgridmap_for_service = hiera("vosupport_enable_mkgridmap_for_service",undef), #a service to enable mkgridmap for (LFC...)
   $enable_mappings_for_service = hiera("vosupport_enable_mappings_for_service",undef), #a service to enable mappings for (WMS, ARGUS...)
-  $enable_environment = hiera("vosupport_enable_environment",false), #whether to set up the gridenv for these VOs
+  $enable_environment = hiera("vosupport_enable_environment",true), #whether to set up the gridenv for these VOs
   $enable_voms = hiera("vosupport_enable_voms",true), #whether to enable VOMS client for these VOs
   $enable_gridmapdir_for_group = hiera("vosupport_enable_gridmapdir_for_group",undef), #if specified, create and populate gridmapdir with pool accounts and sets the ownership of the gridmapdir to the specified group name
   $enable_sudoers = hiera("vosupport_enable_sudoers",false), # if specified, create and populate /etc/
