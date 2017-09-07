@@ -7,7 +7,7 @@ class vosupport::cie_vo_mappings()
     owner =>  'root',
     group =>  'root',
     mode  =>  '0644',
-    source => 'puppet:///modules/vosupport/grid-mapfile'
+    source => 'puppet:///grid_files/vosupport/grid-mapfile'
   }
 
   file{'/etc/grid-security/voms-grid-mapfile':
@@ -15,7 +15,7 @@ class vosupport::cie_vo_mappings()
     owner =>  'root',
     group =>  'root',
     mode  =>  '0644',
-    source => 'puppet:///modules/vosupport/voms-grid-mapfile'
+    source => 'puppet:///grid_files/vosupport/voms-grid-mapfile'
   }
   
   file{'/etc/grid-security/groupmapfile':
@@ -23,7 +23,7 @@ class vosupport::cie_vo_mappings()
     owner =>  'root',
     group =>  'root',
     mode  =>  '0644',
-    source => 'puppet:///modules/vosupport/groupmapfile'
+    source => 'puppet:///grid_files/vosupport/groupmapfile'
   }
 
 }
